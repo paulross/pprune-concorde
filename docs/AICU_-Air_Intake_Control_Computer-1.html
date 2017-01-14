@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir=ltr xmlns=http://www.w3.org/1999/xhtml lang=en><head><meta name=keywords content=Concord AICU (Air Intake Control Computer)></meta>
+<link href=styles.css type=text/css rel=stylesheet></link>
+<body><h1>Posts about: "AICU (Air Intake Control Computer)" [Posts: 27 Pages: 2]</h1>
+<p class=page_links>Page Links:&nbsp;<a href=AICU_-Air_Intake_Control_Computer-0.html>First</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-0.html>Previous</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-0.html>1</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-1.html><b>2</b>
+</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-1.html>Last</a>
+&nbsp;<a href=index.html>Index Page</a>
+</p>
+<table class=posts><tr valign=top><td class=post>M2dude<br/>30th Jan 2011, 09:43<a href=http://www.pprune.org/tech-log/423988-concorde-question-58.html#post6212195><br/>permalink</a>
+ Post: 1153</td>
+<td class="alt1" id="td_post_6212195" style="border-right: 1px solid #000063">
+ <!-- icon and title -->
+ <div class="smallfont">
+  <strong>
+   Static Ports
+  </strong>
+ </div>
+ <hr size="1" style="color:#000063; background-color:#000063"/>
+ <!-- / icon and title -->
+ <!-- message -->
+ <div id="post_message_6212195">
+  <b>
+   CliveL
+  </b>
+  <br/>
+  <div style="margin:20px; margin-top:5px; ">
+   <div class="smallfont" style="margin-bottom:2px">
+    Quote:
+   </div>
+   <table border="0" cellpadding="6" cellspacing="0" style="table-layout:fixed" width="100%">
+    <tr>
+     <td class="alt2" style="border:1px inset">
+      To further complement the answer, Concorde's static ports are mounted on much bigger plates than usually seen. This is because in supersonic flight the static pressure is peculiarly sensitive to the actual angle of the skin around the 'hole' relative to freestream. Consequently the ports are set in plates that have been machined flat. These plates were then jig-set to accurate angles relative to body datum.
+     </td>
+    </tr>
+   </table>
+  </div>
+  It was found that the relatively miniscule differences in plate alignment produced errors in true Ps measurement and so individual corrections had to be applied to each aircraft. No big deal with a digital ADC of course but not so clever when you are dealing with steam driven analog as we were.  (Bearing in mind that any analog ADC is an electro-mechanical device). To give identical Mach 2 cruise readings between ADC 1 &amp; 2 a plug in resistor/diode module was hooked into the respective ADC circuit, and this module stayed with the aircraft always. If we'd ever had to replace a static plate in service (and at BA we never did) we'd have had to have done an in-flight pressure survey in order to calculate the required resistors and altered the module accordingly.
+  <br/>
+  The air intake system, although it used Ps from THREE sources (the side static ports and the static ports built into the nose probe; this being a pressure head and not just a pitot as were the side probes) did not apply any individual aircraft corrections, it just made different corrections between side and nose pressure sources (Ps and Pt). Having a digital processor at it's heart, these corrections were signalled by using 'program pins' at the rear of the AICU rack.
+  <br/>
+  As steam driven as the Concorde ADC was, when it came to RVSM implementation in the late 1990s we found that the air data system was in fact superbly accurate, and no modifications to the computers themselves were required. Such a testament to the original superb design.
+  <br/>
+  <br/>
+  Best regards
+  <br/>
+  Dude
+  <img alt="" border="0" class="inlineimg" src="http://cdn.pprune.org/images/smilies/embarass.gif" title="Embarrassment"/>
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+<tr valign=top><td class=post>Quax .95<br/>6th Apr 2011, 19:43<a href=http://www.pprune.org/tech-log/423988-concorde-question-64.html#post6354590><br/>permalink</a>
+ Post: 1265</td>
+<td class="alt1" id="td_post_6354590" style="border-right: 1px solid #000063">
+ <!-- message -->
+ <div id="post_message_6354590">
+  Hello skyhawkmatthew!
+  <br/>
+  <br/>
+  M2dude gave a good answer on your question in post #1085, so I think I may quote this here again.
+  <br/>
+  <br/>
+  <div style="margin:20px; margin-top:5px; ">
+   <div class="smallfont" style="margin-bottom:2px">
+    Quote:
+   </div>
+   <table border="0" cellpadding="6" cellspacing="0" style="table-layout:fixed" width="100%">
+    <tr>
+     <td class="alt2" style="border:1px inset">
+      <div>
+       Originally Posted by
+       <strong>
+        M2dude
+       </strong>
+      </div>
+      <div style="font-style:italic">
+       As far as the MAX SPEED bit goes, Concorde was as we know flown to a maximum of Mach 2.23 on A/C 101, but with the production intake and 'final' AICU N1 limiter law, the maximum achievable Mach number in level flight is about Mach 2.13. (Also theoretically, somewhere between Mach 2.2 and 2.3, the front few intake shocks would be 'pushed' back beyond the lower lip, the resulting flow distortion causing multiple severe and surges).
+       <br/>
+       <br/>
+       The maximum altitude EVER achieved in testing was I believe by aircraft 102 which achieved 68,000'.
+      </div>
+     </td>
+    </tr>
+   </table>
+  </div>
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+<tr valign=top><td class=post>consub<br/>6th Mar 2014, 19:34<a href=http://www.pprune.org/tech-log/423988-concorde-question-91.html#post8356169><br/>permalink</a>
+ Post: 1805</td>
+<td class="alt1" id="td_post_8356169" style="border-right: 1px solid #000063">
+ <!-- icon and title -->
+ <div class="smallfont">
+  <strong>
+   Concorde AICU
+  </strong>
+ </div>
+ <hr size="1" style="color:#000063; background-color:#000063"/>
+ <!-- / icon and title -->
+ <!-- message -->
+ <div id="post_message_8356169">
+  I have flitted through the threads, and have a few comments that might be of interest.
+  <br/>
+  There were no classified components in the AICU, however there was company confidential in that we did not want the competition to have our lead, also there was an American embargo on delivering equipment with the 5400 series TTL logic integrated circuits which were milspec and chosen for their environmental screening.
+  <br/>
+  Some of the printed circuit boards were 8-layer.
+  <br/>
+  The program was contained in 512 lines of 24 bit instructions.
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+<tr valign=top><td class=post>consub<br/>8th Mar 2014, 18:15<a href=http://www.pprune.org/tech-log/423988-concorde-question-91.html#post8360094><br/>permalink</a>
+ Post: 1806</td>
+<td class="alt1" id="td_post_8360094" style="border-right: 1px solid #000063">
+ <!-- icon and title -->
+ <div class="smallfont">
+  <strong>
+   Concorde AICU
+  </strong>
+ </div>
+ <hr size="1" style="color:#000063; background-color:#000063"/>
+ <!-- / icon and title -->
+ <!-- message -->
+ <div id="post_message_8360094">
+  Hi Christian,I was a development engineer at Filton working on the AICU at first but ending up in charge of avionics test.
+  <br/>
+  So as far as your AICU is concerned - I have handled all the boards extensively.
+  <br/>
+  I first worked on the "A" model - the first manufactured box, followed by "A bar" (logically, not "A").
+  <br/>
+  These did not have the doghouse connector on the front, and in order to see what was going on in the program, we made a strobe unit hard wired to the digital boards, this was followed by the connector on the front and an AICU test box.
+  <br/>
+  When first switched on the whole unit rattled at high speed as all the relays chattered.
+  <br/>
+  I spent several days adding decoupling capacitors on all the boards.
+  <br/>
+  The birds nest chassis wiring was chosen to prevent cross- talk.
+  <br/>
+  This was at the start of 1972, but I can still remember a lot of it.
+  <br/>
+  Someone mentioned a prom change at Casablanca, I carried out a prom change there just before the C of A flight.
+  <br/>
+  I am a volunteer at the Bristol Aero Collection, and we have just received a drawing cupboard with the AICS drawings.
+  <br/>
+  We are at the moment documenting archives. One of the volunteers is Ted Talbot who I used to work with, and has been mentioned in posts.
+  <br/>
+  Feel free to ask questions, I may remember the answers!
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+<tr valign=top><td class=post>ChristiaanJ<br/>8th Mar 2014, 18:44<a href=http://www.pprune.org/tech-log/423988-concorde-question-91.html#post8360151><br/>permalink</a>
+ Post: 1807</td>
+<td class="alt1" id="td_post_8360151" style="border-right: 1px solid #000063">
+ <!-- message -->
+ <div id="post_message_8360151">
+  consub,
+  <br/>
+  Slightly amazed about your note re the 5400 series TTL being embargoed.
+  <br/>
+  I pulled a random board from "my" AICU, and all of it is 5400 series, datecodes 71 and 72.
+  <br/>
+  I hope you can tell us some more...
+  <br/>
+  I've been sniffing round the boards, but I haven't found the CPU or the clock... and yes, I know the AICU dates from before the arrival of the microprocessor!
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+<tr valign=top><td class=post>consub<br/>8th Mar 2014, 20:39<a href=http://www.pprune.org/tech-log/423988-concorde-question-91.html#post8360344><br/>permalink</a>
+ Post: 1808</td>
+<td class="alt1" id="td_post_8360344" style="border-right: 1px solid #000063">
+ <!-- icon and title -->
+ <div class="smallfont">
+  <strong>
+   Concorde AICU
+  </strong>
+ </div>
+ <hr size="1" style="color:#000063; background-color:#000063"/>
+ <!-- / icon and title -->
+ <!-- message -->
+ <div id="post_message_8360344">
+  Hi Christian,I was a development engineer at Filton working on the AICU at first but ending up in charge of avionics test.
+  <br/>
+  So as far as your AICU is concerned - I have handled all the boards extensively.
+  <br/>
+  I first worked on the "A" model - the first manufactured box, followed by "A bar" (logically, not "A").
+  <br/>
+  These did not have the doghouse connector on the front, and in order to see what was going on in the program, we made a strobe unit hard wired to the digital boards, this was followed by the connector on the front and an AICU test box.
+  <br/>
+  When first switched on the whole unit rattled at high speed as all the relays chattered.
+  <br/>
+  I spent several days adding decoupling capacitors on all the boards.
+  <br/>
+  The birds nest chassis wiring was chosen to prevent cross- talk.
+  <br/>
+  This was at the start of 1972, but I can still remember a lot of it.
+  <br/>
+  Someone mentioned a prom change at Casablanca, I carried out a prom change there just before the C of A flight.
+  <br/>
+  I am a volunteer at the Bristol Aero Collection, and we have just received a drawing cupboard with the AICS drawings.
+  <br/>
+  We are at the moment documenting archives. One of the volunteers is Ted Talbot who I used to work with, and has been mentioned in posts.
+  <br/>
+  Feel free to ask questions, I may remember the answers!
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+<tr valign=top><td class=post>consub<br/>19th Mar 2014, 21:54<a href=http://www.pprune.org/tech-log/423988-concorde-question-91.html#post8388573><br/>permalink</a>
+ Post: 1811</td>
+<td class="alt1" id="td_post_8388573" style="border-right: 1px solid #000063">
+ <!-- message -->
+ <div id="post_message_8388573">
+  Hi Christian,
+  <br/>
+  We chose the components for their environmental tests, and all the AICS components were subjected to acceptance testing when received, which was a bit of a problem sometimes because the BAC goods inwards system was so slow that some of the expensive ADC/DACs that were not quite good enough were returned to Harris, but were out of warranty by the time they were returned. The embargo was not just the 5400 TTL I/Cs but all milspec. components.
+  <br/>
+  Its stretching my memory, but AICU1 was the ADC board, 2-5 were the processor, 6-10 were the prom boards. There was a bought in board (AICU 17 I think) that was supplied by ?????, that processed the sensor unit data.
+  <br/>
+  The AICS was filled with redundancy, as well as the obvious 2 AICUs per intake, and 4 sensor units, the program calculated the output data with dummy inputs - twice, and if these were correct, the proper inputs were used and the result was output to the doors. On the analogue bit there were two channels for each output and at the end one output was compared with the other and if different a fail was produced.
+  <br/>
+  We haven't opened the plan chests with the AICS drawings yet.
+  <br/>
+  As well as the 8 AICUs on G-BOAF, we have the prototype AICU that was used on the AICS systems rig.
+ </div>
+ <!-- / message -->
+</td>
+</tr>
+</table>
+<p class=page_links>Page Links:&nbsp;<a href=AICU_-Air_Intake_Control_Computer-0.html>First</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-0.html>Previous</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-0.html>1</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-1.html><b>2</b>
+</a>
+&nbsp;<a href=AICU_-Air_Intake_Control_Computer-1.html>Last</a>
+&nbsp;<a href=index.html>Index Page</a>
+</p>
+</body>
+</head>
+</html>

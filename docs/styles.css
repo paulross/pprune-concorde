@@ -1,0 +1,138 @@
+body {
+font-size:      12px;
+font-family:    arial,helvetica,sans-serif;
+margin:         6px;
+padding:        6px;
+}
+h1 {
+color:            darkgoldenrod;
+font-family:      sans-serif;
+font-size:        14pt;
+font-weight:      bold;
+}
+h2 {
+color:          IndianRed;
+font-family:    sans-serif;
+font-size:      14pt;
+font-weight:    normal;
+}
+h3 {
+color:          Black;
+font-family:    sans-serif;
+font-size:      12pt;
+font-weight:    bold;
+}
+h4 {
+color:          FireBrick;
+font-family:    sans-serif;
+font-size:      10pt;
+font-weight:    bold;
+}
+span.line {
+color:           slategrey;
+/*font-style:    italic; */
+}
+span.file {
+ color:         black;
+ font-style:    italic;
+}
+table.indextable {
+    border:         2px solid black;
+    font-family:    sans-serif;
+    color:          black;
+    width:          96%;
+    bgcolor:        #FFFFFF;
+    align:          center;
+}
+th.indextable, td.indextable {
+    /* border: 1px solid black; */
+    border: 1px;
+    border-top-style:solid;
+    border-right-style:dotted;
+    border-bottom-style:none;
+    border-left-style:none;
+    vertical-align:top;
+    padding: 2px 6px 2px 6px;
+}
+table.posts {
+border:            2px solid black;
+border-collapse:   collapse;
+font-family:       sans-serif;
+color:             black;
+}
+th.post, td.post, td.alt1 {
+border:            1px solid black;
+vertical-align:    top;
+padding:           2px 6px 2px 6px;
+}
+p.page_links {
+    horizontal-align:          center;
+    font-family:      sans-serif;
+    font-size:        10pt;
+    font-style:     italic;
+}span.macro_s_f_r_f_name{
+    color:          DarkSlateGray;
+    font-family:    monospace;
+    font-weight:    normal;
+    font-style:     italic;
+}
+span.macro_s_t_r_f_name {
+    color:          DarkSlateGray;
+    font-family:    monospace;
+    font-weight:    normal;
+    font-style:     normal;
+}
+span.macro_s_f_r_t_name {
+    color:          Red; /* OrangeRed; */
+    font-family:    monospace;
+    font-weight:    bold;
+    font-style:     italic;
+}
+span.macro_s_t_r_t_name{
+    color:          Red; /* OrangeRed; */
+    font-family:    monospace;
+    font-weight:    bold;
+    font-style:     normal;
+}
+span.macro_s_f_r_f_repl{
+    color:          SlateGray;
+    font-family:    monospace;
+    font-weight:    normal;
+    font-style:     italic;
+}
+span.macro_s_t_r_f_repl {
+    color:          SlateGray;
+    font-family:    monospace;
+    font-weight:    normal;
+    font-style:     normal;
+}
+span.macro_s_f_r_t_repl {
+    color:          RosyBrown; /* Orange; */
+    font-family:    monospace;
+    font-weight:    bold;
+    font-style:     italic;
+}
+span.macro_s_t_r_t_repl{
+    color:          RosyBrown; /* Orange; */
+    font-family:    monospace;
+    font-weight:    bold;
+    font-style:     normal;
+}
+span.file_decl {
+    color:          black;
+    font-family:    monospace;
+    /* font-weight:    bold;
+    font-style:     italic; */
+}
+span.CcgNodeTrue {
+    color:          LimeGreen;
+    font-family:    monospace;
+    /* font-weight:    bold; */
+    /* font-style:     italic; */
+}
+span.CcgNodeFalse {
+    color:          red;
+    font-family:    monospace;
+    /* font-weight:    bold; */
+    /* font-style:     italic; */
+}

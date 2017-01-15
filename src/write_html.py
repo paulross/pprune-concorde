@@ -1,3 +1,31 @@
+"""MIT License
+
+Copyright (c) 2017 Paul Ross https://github.com/paulross
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
+
+__author__  = 'Paul Ross'
+__date__    = '2017-01-01'
+__version__ = '0.0.1'
+__rights__  = 'Copyright (c) 2017 Paul Ross'
+
 import collections
 from contextlib import contextmanager
 import os
@@ -90,14 +118,14 @@ def write_index_page(thread, subject_map, out_path):
                     index.write('There is a great ')
                     with element(index, 'a', href='http://www.pprune.org/tech-log/423988-concorde-question.html'):
                         index.write('thread on pprune')
-                    index.write(' that containes a fascinating discussion from experts about Concorde.')
+                    index.write(' that contains a fascinating discussion from experts about Concorde.')
                     index.write(' The thread has nearly 2000 posts and around 100 pages.')
                     index.write(' Naturally enough it is ordered in time of each post but since it covers so many subjects it is a little hard to follow a particular subject.')
                 with element(index, 'p'):
-                    index.write('Here I have reorganised the original thread by subject semie-automatically using Python.')
+                    index.write('Here I have reorganised the original thread by subject semi-automatically using Python.')
                     index.write(' Any post that refers to a subject is included in a page in the original order of the posts.')
                     index.write(' Posts that mention multiple subjects are duplicated appropriately.')
-                    index.write(' I have not changed the content of any post, this includes links and images')
+                    index.write(' I have not changed the content of any post and this includes links and images.')
                     index.write(' Each post is linked to the original so that you can check ;-)')
                 with element(index, 'p'):
                     index.write('Here are all {:d} subjects I have identified with the number of posts for each subject:'.format(len(subject_map)))

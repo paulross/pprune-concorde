@@ -1,10 +1,37 @@
-"""This is a set of maps that determine the layout of the Concorde Re-mix site.
+"""MIT License
+
+Copyright (c) 2017 Paul Ross https://github.com/paulross
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+This is a set of maps that determine the layout of the Concorde Re-mix site.
 Each key is a word or phrase that can be identified in the text.
 Each value in the map is the subject that the text (probably) refers to.
 
 TODO: Make this a list of (function, map) where the function takes a list of words and
 applies it to the map. This would make the code more general.
 """
+
+__author__  = 'Paul Ross'
+__date__    = '2017-01-01'
+__version__ = '0.0.1'
+__rights__  = 'Copyright (c) 2017 Paul Ross'
 
 # Map of {lower_case_word : subject_title, ..}
 WORDS_MAP = {

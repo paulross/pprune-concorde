@@ -184,7 +184,7 @@ CAPS_WORDS = {
     'TAT' : 'TAT (Total Air Temperature)',
     'TLA' : 'TLA (Throttle Lever Angle)',
     'TMO' : 'TMO (Temprature Max Operating)',
-    'TU144' : 'TU-144',
+    'TU144' : 'Tu-144',
     'V1' : 'V1',
     'V2' : 'V2',
     'YELLOW' : 'Hydraulic System - YELLOW',

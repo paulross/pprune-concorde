@@ -73,11 +73,15 @@ def element(_stream, _name, **attributes):
     _stream.write('</{}>\n'.format(_name))
 
 def pass_one(thread, common_words):
-    """Works through every post in the thread and builds up a map of:
-    {subject : [post_ordinals, ...]
+    """Works through every post in the thread and returns a tuple of maps:
+    (
+        {subject : [post_ordinals, ...], ...}
+        {post_ordinals : set([subject, ...]), ...}
+    )
     """
     subject_post_map = collections.defaultdict(list)
     post_subject_map = {}
+    user_subject_map = collections.defaultdict(set)
     for i, post in enumerate(thread.posts):
         subjects = analyse_thread.match_words(post, common_words, 10, concorde_pub_map.WORDS_MAP)
         subjects |= analyse_thread.match_all_caps(post, common_words, concorde_pub_map.CAPS_WORDS)
@@ -87,9 +91,10 @@ def pass_one(thread, common_words):
         for subject in subjects:
             subject_post_map[subject].append(i)
         post_subject_map[post.pprune_sequence_num] = subjects
+        user_subject_map[post.user.strip()] |= subjects
         # print('Post {:3d} subjects [{:3d}]: {}'.format(i, len(subjects), subjects))
     # pprint.pprint(subject_map, width=200)
-    return subject_post_map, post_subject_map
+    return subject_post_map, post_subject_map, user_subject_map
 
 def _subject_page_name(subject, page_num):
     result = subject.translate(PUNCTUATION_TABLE) + '{:d}.html'.format(page_num)
@@ -97,7 +102,7 @@ def _subject_page_name(subject, page_num):
     # print(subject, '->' , result)
     return result
 
-def write_index_page(thread, subject_map, out_path):
+def write_index_page(thread, subject_map, user_subject_map, out_path):
     if not os.path.exists(out_path):
         os.mkdir(out_path)
     styles.writeCssToDir(out_path)
@@ -145,11 +150,11 @@ def write_index_page(thread, subject_map, out_path):
                                                                          len(subject_map[subject])))
                                 # print(subject, subject_map[subject])
                                 subject_index += 1
-                # Posts by user
+                # Posts by user, including the subjects they covered
                 with element(index, 'h1'):
                     index.write('Hall of Fame')
                 MOST_COMMON_COUNT = 20
-                user_count = collections.Counter([p.user for p in thread.posts])
+                user_count = collections.Counter([p.user.strip() for p in thread.posts])
                 # print(user_count)
                 with element(index, 'p'):
                     index.write('The most prolific {:d} posters in the original thread:'.format(MOST_COMMON_COUNT))
@@ -159,13 +164,24 @@ def write_index_page(thread, subject_map, out_path):
                             index.write('User Name')
                         with element(index, 'th', _class='indextable'):
                             index.write('Number of Posts')
+                        with element(index, 'th', _class='indextable'):
+                            index.write('Subjects')
                     for k, v in user_count.most_common(MOST_COMMON_COUNT):
                         with element(index, 'tr'):
+                            # User name
                             with element(index, 'td', _class='indextable'):
                                 index.write(k)
+                            # Count of posts
                             with element(index, 'td', _class='indextable'):
                                 index.write('{:d}'.format(v))
-
+                            # Comma separated list of subjects that they are identified with 
+                            with element(index, 'td', _class='indextable'):
+                                subjects = sorted(user_subject_map[k])
+                                for subject in subjects:
+                                    with element(index, 'a',
+                                                 href=_subject_page_name(subject, 0)):
+                                        index.write(subject)
+                                    index.write('&nbsp; ')
 
 def _write_page_links(subject, page_num, page_count, f):
     with element(f, 'p', _class='page_links'):
@@ -234,10 +250,11 @@ def write_whole_thread(thread, common_words):
     out_path = get_out_path()
     print('Output path: {}'.format(out_path))
     shutil.rmtree(out_path, ignore_errors=True)
-    subject_map, post_map = pass_one(thread, common_words)
+    subject_map, post_map, user_subject_map = pass_one(thread, common_words)
+#     pprint.pprint(user_subject_map)
     print('Writing: {:s}'.format('index.html'))
-    write_index_page(thread, subject_map, out_path)
+    write_index_page(thread, subject_map, user_subject_map, out_path)
     for subject in sorted(subject_map.keys()):
-        print('Writing: "{:s}"'.format(subject))
+        print('Writing: "{:s}" [{:d}]'.format(subject, len(subject_map[subject])))
         write_subject_page(thread, subject_map, subject, out_path)
 #     pprint.pprint(post_map)

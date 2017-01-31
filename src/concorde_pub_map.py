@@ -249,6 +249,8 @@ PHRASES_2_MAP = {
     ('rotating', 'stall') : 'Rotating (engine) Stall',
     ('stick', 'shaker') : 'Stick Shaker',
     ('taxy', 'lights') : 'Landing & Taxy Lights',
+    ('temperature', 'shear') : 'Temperature Shear',
+    ('temperature', 'shears') : 'Temperature Shear',
     ('transonic', 'acceleration') : 'Transonic Acceleration',
     ('thrust', 'recuperator') : 'Thrust Recuperator',
     ('vortex', 'aoa') : 'Vortex AoA',

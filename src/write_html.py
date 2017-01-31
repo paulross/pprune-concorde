@@ -62,12 +62,17 @@ def get_out_path():
 @contextmanager
 def element(_stream, _name, **attributes):
     _stream.write('<{}'.format(_name))
+    # Sort attributes: {true_name : attribute key, ...}
+    attr_dict = {}
+    for k in attributes.keys():
+        if k.startswith('_'):
+            assert k[1:] not in attr_dict
+            attr_dict[k[1:]] = k
+        else:
+            attr_dict[k] = k
     if len(attributes):
-        for a in attributes:
-            if a.startswith('_'):
-                _stream.write(' {}={}'.format(a[1:], attributes[a]))
-            else:
-                _stream.write(' {}={}'.format(a, attributes[a]))
+        for a in sorted(attr_dict.keys()):
+            _stream.write(' {}={}'.format(a, attributes[attr_dict[a]]))
     _stream.write('>')
     yield
     _stream.write('</{}>\n'.format(_name))

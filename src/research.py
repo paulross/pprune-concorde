@@ -58,9 +58,9 @@ def print_all_caps(thread, common_words, print_count):
     pprint.pprint(sorted(word_counter.most_common(print_count)))
 
 def print_research(thread, common_words):
-    print_non_cap_words(thread, common_words)
+    # print_non_cap_words(thread, common_words)
     # print_all_caps(thread, common_words, 200)
-    # print_phrases(thread, common_words, 2, 400)
+    print_phrases(thread, common_words, 2, 400)
 
 def main():
     thread = read_html.read_whole_thread(sys.argv[1])
@@ -68,7 +68,7 @@ def main():
     for post in thread.posts:
         word_count += len(post.words)
     print('Number of words: {:d}'.format(word_count))
-    common_words = read_html.read_common_words(sys.argv[2], 10000)
+    common_words = read_html.read_common_words(sys.argv[2], 1000)
     print_research(thread, common_words)
 
 if __name__ == '__main__':

@@ -202,7 +202,8 @@ PHRASES_2_MAP = {
     ('boeing', 'SST') : 'Boeing SST',
     ('barbara', 'harmer') : 'Barbara Harmer',
     ('brian', 'calvert') : 'Brian Calvert',
-    ('brian', 'wadpole') : 'Brian Wadpole',
+    ('brian', 'wadpole') : 'Brian Walpole',
+    ('brian', 'walpole') : 'Brian Walpole',
     ('CLIMB', 'MAX') : 'Climb Performance',
     ('C', 'G') : 'C of G', # 'of' is stripped out by common words.
     ('concorde', 'simulator') : 'Concorde Simulator',

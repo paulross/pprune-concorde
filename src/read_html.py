@@ -1,30 +1,175 @@
-"""MIT License
-
-Copyright (c) 2017 Paul Ross https://github.com/paulross
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+# MIT License
+#
+# Copyright (c) 2017 Paul Ross https://github.com/paulross
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 """
+Example post from https://www.pprune.org/rumours-news/638797-united-b777-engine-failure.html
 
-__author__  = 'Paul Ross'
-__date__    = '2017-01-01'
+                                        <div class="trow">
+                                            <div class="tcell alt2" style="width:175px;">
+                                                <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","name":"nicolai","memberOf":"Registered Member","url":"https:\/\/www.pprune.org\/member.php?u=219249"}</script>
+                                                <div id="postmenu_10994338">
+
+                                                    <a rel="nofollow" class="bigusername" href="https://www.pprune.org/members/219249-nicolai">nicolai</a>
+                                                    <script type="2054ed5ceb28d642617005d7-text/javascript">
+                                                    vbmenu_register("postmenu_10994338", true);
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="smallfont">
+                                                    <span class="alt2 threadstarter">Thread Starter</span>
+                                                </div>
+
+                                                <div class="smallfont">
+
+                                                    						&nbsp;
+                                                    <br/>
+                                                    <div>Join Date: Jan 2008</div>
+                                                    <div>Location: It used to be an island...</div>
+
+                                                    <div>
+                                                    							Posts: 233
+                                                    						</div>
+
+                                                    <div></div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tcell alt1" id="td_post_10994338">
+
+                                                <!-- icon and title -->
+                                                <div class="smallfont">
+
+                                                    <strong>United B777 engine failure</strong>
+                                                </div>
+                                                <hr/>
+                                                <!-- / icon and title -->
+
+                                                <!-- message -->
+                                                <div id="post_message_10994338">
+
+
+                                                    						Reports on Twitter that a UAL 777-200 has had an uncontained engine failure on the way from DEN (Denver, Colorado, USA) to HNL (Honolulu, Hawai'i, USA) and returned safely to DEN. Local news report:
+                                                    <a href="https://thepostmillennial.com/colorado-residents-shocked-falling-debris-united-airlines" target="_blank">https://thepostmillennial.com/colora...nited-airlines</a>
+                                                    <br/>
+                                                    <br/>
+                                                     There's a twitter post by user @stillgray with video of the failed engine from in the aircraft that PPRuNe doesn't seem to want to include here...
+                                                    <br/>
+                                                    <br/>
+                                                    <img src="https://cimg6.ibsrv.net/gimg/pprune.org-vbulletin/800x400/1613859028_bfa90ab22ac53d454b9d408b228b58c1bbed57fd.jpeg" alt="" class="post_inline_image"/>
+                                                    <br/>
+                                                    <i>UAL 777</i>
+                                                    <br/>
+                                                    <img src="https://cimg0.ibsrv.net/gimg/pprune.org-vbulletin/2000x1504/eusp_qruuaiubbl_jpeg_3753a703c961585ca56d2e7fcd59348e31d1b385.jpg" alt="" class="post_inline_image"/>
+                                                    <br/>
+                                                    <i>Ground debris</i>
+                                                    <br/>
+
+                                                </div>
+                                                <!-- / message -->
+
+                                            </div>
+                                        </div>
+                                        <div class="trow">
+                                            <div class="tcell alt2">
+                                                <img class="inlineimg" src="https://www.pprune.org/images/statusicon/user_offline.gif" alt="nicolai is offline"/>
+
+                                                <a href="https://www.pprune.org/report.php?p=10994338" rel="nofollow">
+                                                    <img class="inlineimg" src="https://www.pprune.org/images/buttons/report.gif" alt="Report Post"/>
+                                                </a>
+
+
+                                                					&nbsp;
+
+                                            </div>
+
+                                            <div class="tcell alt1 text-right">
+                                                <!-- controls -->
+
+                                                <a class="button hollow primary" href="https://www.pprune.org/newreply.php?do=newreply&amp;p=10994338" rel="nofollow">
+                                                    <i class="fas fa-quote-right"></i>
+                                                     Quote
+                                                </a>
+
+                                                <a class="button hollow primary" href="https://www.pprune.org/newreply.php?do=newreply&amp;p=10994338" rel="nofollow" id="qr_10994338" onclick="if (!window.__cfRLUnblockHandlers) return false; return false" data-cf-modified-2054ed5ceb28d642617005d7-="">
+                                                    <i class="fas fa-bolt"></i>
+                                                     Quick Reply
+                                                </a>
+
+                                                <!-- / controls -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- trow-group -->
+                                </div>
+                                <!-- tbox -->
+                            </div>
+
+                            <!-- post 10994338 popup menu -->
+                            <div class="vbmenu_popup" id="postmenu_10994338_menu" style="display:none">
+                                <div class="tbox">
+                                    <div class="trow thead">
+                                        <div class="tcell">nicolai</div>
+                                    </div>
+
+                                    <div class="trow">
+                                        <div class="tcell vbmenu_option">
+                                            <a rel="nofollow" href="https://www.pprune.org/members/219249-nicolai">View Public Profile</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="trow">
+                                        <div class="tcell vbmenu_option">
+                                            <a href="https://www.pprune.org/private.php?do=newpm&amp;u=219249" rel="nofollow">Send a private message to nicolai</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="trow">
+                                        <div class="tcell vbmenu_option">
+                                            <a href="https://www.pprune.org/search.php?do=finduser&amp;u=219249" rel="nofollow">Find More Posts by nicolai</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="trow">
+                                        <div class="tcell vbmenu_option">
+                                            <a rel="nofollow" href="https://www.pprune.org/profile.php?do=addlist&amp;userlist=buddy&amp;u=219249">Add nicolai to Your Contacts</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- / post 10994338 popup menu -->
+
+                        </div>
+
+                        <!-- / post #10994338 -->
+                        <!-- post #10994345 -->
+
+
+"""
+__author__ = 'Paul Ross'
+__date__ = '2017-01-01'
 __version__ = '0.0.1'
-__rights__  = 'Copyright (c) 2017 Paul Ross'
+__rights__ = 'Copyright (c) 2017 Paul Ross'
 
 import collections
 import os
@@ -42,6 +187,7 @@ RE_FILENAME = re.compile(r'(\d+)\D+(\d+)\.html')
 RE_PERMALINK_TO_POST_NUMBER = re.compile(r'\S+post(\d+)')
 PUNCTUATION_TABLE = str.maketrans({key: None for key in string.punctuation})
 DIGITS_TABLE = str.maketrans({key: None for key in string.digits})
+
 
 class Post:
     def __init__(self, date, permalink, user, td, pprune_sequence_num):
@@ -78,6 +224,7 @@ class Post:
         return result
         # return [w for w in self.words if w not in remove_these]
 
+
 class Thread:
     def __init__(self):
         # Ordered list of posts
@@ -102,6 +249,7 @@ class Thread:
 
     def __len__(self):
         return len(self.posts)
+
 
 def doc_to_posts(filename):
     # doctext = open('423988-concorde-question-1.html', errors='backslashreplace').read()
@@ -143,6 +291,7 @@ def post_text(post):
         user = tds[0].div.a.get_text()
     return Post(date, permalink, user, tds[1], pprune_sequence_num)
 
+
 def read_common_words(filename, n):
     """Reads filename and returns the set of n words."""
     print('Reading words file: {}'.format(filename))
@@ -154,6 +303,7 @@ def read_common_words(filename, n):
             l.append(aline.split()[0].lower())
             n -= 1
     return set(l)
+
 
 def read_files(dirname):
     """Returns a dict of {ordinal : file_abspath, ...} of the files in a directory that match RE_FILENAME."""
@@ -168,6 +318,7 @@ def read_files(dirname):
             #     print('Ignoring %s' % aname)
     return files
 
+
 def read_whole_thread(html_path):
     thread = Thread()
     files = read_files(html_path)
@@ -180,3 +331,16 @@ def read_whole_thread(html_path):
         print('Read: {:s} posts: {:d}'.format(files[filenum], post_count))
     print('Read %d posts' % len(thread.posts))
     return thread
+
+# URLs
+# First: https://www.pprune.org/rumours-news/638797-united-b777-engine-failure.html
+# Subsequent: https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-2.html
+# Last page <a id="mb_pagelast" ...
+#     <li>
+#         <a id="mb_pagelast" class="button primary hollow" href="https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-14.html" title="Last Page - Results 261 to 275 of 275">
+#             Last
+#             <i class="fas fa-angle-double-right"></i>
+#         </a>
+#     </li>
+#
+# soup.find_all('a', id='mb_pagelast')

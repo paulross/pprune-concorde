@@ -26,11 +26,10 @@ __date__    = '2017-01-01'
 __version__ = '0.0.1'
 __rights__  = 'Copyright (c) 2017 Paul Ross'
 
-import collections
 import pprint
 import sys
 
-import read_html
+from PPRUNE.common import read_html
 import analyse_thread
 
 def print_non_cap_words(thread, common_words):

@@ -44,6 +44,7 @@ logger = logging.getLogger(__file__)
 
 
 HTML_PAGE_PATH = '/Users/paulross/Documents/pprune/concorde/original'
+HTML_PAGE_PATH = '/Users/paulross/Documents/pprune/concorde/2021-03-12'
 # Matches '423988-concorde-question-1.html' with two groups: ('423988', '1')
 RE_FILENAME = re.compile(r'(\d+)\D+(\d+)\.html')
 # Matches 'http://www.pprune.org/tech-log/423988-concorde-question.html#post5866333'
@@ -138,15 +139,25 @@ class Thread:
         self.posts: typing.List[Post] = []
         # Map of {permalink : post_ordinal, ...}
         self.post_map: typing.Dict[str, int] = {}
+        # Map of {User : [post_ordinal, ...], ...}
+        self.user_post_indexes: typing.Dict[User, typing.List[int]] = collections.defaultdict(list)
+
+    def __len__(self) -> int:
+        return len(self.posts)
+
+    def __getitem__(self, item) -> Post:
+        return self.posts[item]
 
     def add_post(self, post: Post):
         if post.permalink in self.post_map:
             raise ValueError('permalink already in post_map. Trying to add: {:s}'.format(post.permalink))
         self.post_map[post.permalink] = len(self.posts)
+        self.user_post_indexes[post.user].append(len(self.posts))
         self.posts.append(post)
 
     @property
     def all_users(self) -> typing.Set[User]:
+        """All the users in this thread."""
         return set([p.user for p in self.posts])
 
     def get_post(self, permalink: str) -> Post:
@@ -154,8 +165,9 @@ class Thread:
         May raise KeyError or IndexError."""
         return self.posts[self.post_map[permalink]]
 
-    def __len__(self) -> int:
-        return len(self.posts)
+    def get_post_ordinals(self, user: User) -> typing.List[int]:
+        """Given a user what posts have they made, by ordinal."""
+        return self.user_post_indexes[user]
 
 
 def parse_url_to_beautiful_soup(url: str) -> bs4.BeautifulSoup:
@@ -188,10 +200,18 @@ def get_post_nodes_from_file(file: typing.TextIO) -> typing.List[bs4.element.Tag
     """Returns a list of posts as HTML nodes from a file object."""
     file.seek(0)
     doc = bs4.BeautifulSoup(file.read(), 'html.parser')
+    return get_post_nodes_from_parsed_doc(doc)
+
+
+def get_post_nodes_from_parsed_doc(doc: bs4.BeautifulSoup) -> typing.List[bs4.element.Tag]:
     posts = doc.find('div', id='posts')
     # Miss out the last one: <div id="lastpost"></div>
     ret = [c for c in posts.children if c.name == 'div' and c.attrs['id'] != 'lastpost']
     return ret
+
+
+def get_post_objects_from_parsed_doc(doc: bs4.BeautifulSoup) -> typing.List[Post]:
+    return [post_from_html_node(node) for node in get_post_nodes_from_parsed_doc(doc)]
 
 
 def html_node_post_id(node: bs4.element.Tag) -> str:
@@ -306,8 +326,8 @@ def read_whole_thread(directory_name: str) -> Thread:
             # print('Post: %d' % i)
             thread.add_post(post_from_html_node(post))
             post_count += 1
-        print('Read: {:s} posts: {:d}'.format(files[file_number], post_count))
-    print('Read %d posts' % len(thread.posts))
+        logger.info('Read: {:s} posts: {:d}'.format(files[file_number], post_count))
+    logger.info('Read %d posts' % len(thread.posts))
     return thread
 
 
@@ -320,7 +340,7 @@ RE_HREF_TO_URL_NUMBER = re.compile(r'(.+?)-(\d+)\.html')
 
 
 def all_page_urls_from_page(url: str, html_page: bs4.BeautifulSoup) -> typing.List[str]:
-    """Get all the URLs from the first page.
+    """Get all the URLs for the thread from the first page.
     URLs
     First: https://www.pprune.org/rumours-news/638797-united-b777-engine-failure.html
 
@@ -334,8 +354,8 @@ def all_page_urls_from_page(url: str, html_page: bs4.BeautifulSoup) -> typing.Li
             </a>
         </li>
 
-    If a single page the anchor is:
-              <a id="mb_pagelast" class="button primary hollow disabled" href="javascript:void(0)" title="Last Page - Results  to  of 1">
+    If there is only a single page the anchor is:
+        <a id="mb_pagelast" class="button primary hollow disabled" href="javascript:void(0)" title="Last Page - Results  to  of 1">
     """
     ret = [url]
     last_url = last_url_from_html_page(html_page)
@@ -352,3 +372,24 @@ def all_page_urls_from_url(url: str) -> typing.List[str]:
     """Get all the URLs from the first page."""
     html_page = parse_url_to_beautiful_soup(url)
     return all_page_urls_from_page(url, html_page)
+
+
+def get_first_page_and_subsequent_urls_from_url(url: str) -> typing.Tuple[bs4.BeautifulSoup, typing.List[str]]:
+    """Get the first URL as a parsed HTML page and all the subsequent URLs."""
+    html_doc = parse_url_to_beautiful_soup(url)
+    return html_doc, all_page_urls_from_page(url, html_doc)[1:]
+
+
+def read_whole_thread_from_url(url_first: str) -> Thread:
+    thread = Thread()
+    html_doc, urls = get_first_page_and_subsequent_urls_from_url(url_first)
+    for post in get_post_objects_from_parsed_doc(html_doc):
+        thread.add_post(post)
+    for url in urls:
+        doc = parse_url_to_beautiful_soup(url)
+        for post in get_post_objects_from_parsed_doc(doc):
+            thread.add_post(post)
+    return thread
+
+
+

@@ -345,3 +345,31 @@ def test_all_page_urls_from_page(url, page_map_index, expected):
     html_page = read_html.parse_str_to_beautiful_soup(PAGE_MAP[page_map_index])
     result = read_html.all_page_urls_from_page(url, html_page)
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    'url, expected',
+    (
+            (EXAMPLE_PPRINE_PAGE_URL,
+             ['https://www.pprune.org/rumours-news/638797-united-b777-engine-failure.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-2.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-3.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-4.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-5.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-6.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-7.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-8.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-9.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-10.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-11.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-12.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-13.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-14.html']),
+            (EXAMPLE_PPRUNE_PAGE_THREE_POSTS_URL,
+             ['https://www.pprune.org/rumours-news/639101-a320-nose-gear-incident.html']),
+    )
+)
+def test_all_page_urls_from_external_url(url, expected):
+    html_page = read_html.parse_url_to_beautiful_soup(url)
+    result = read_html.all_page_urls_from_page(url, html_page)
+    assert result == expected

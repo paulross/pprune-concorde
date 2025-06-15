@@ -29,7 +29,7 @@ __rights__  = 'Copyright (c) 2017 Paul Ross'
 import pprint
 import sys
 
-from PPRUNE.common import read_html
+from src.PPRUNE import read_html
 import analyse_thread
 
 def print_non_cap_words(thread, common_words):

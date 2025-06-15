@@ -377,7 +377,9 @@ def test_all_page_urls_from_page(url, page_map_index, expected):
               'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-11.html',
               'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-12.html',
               'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-13.html',
-              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-14.html']),
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-14.html',
+              'https://www.pprune.org/rumours-news/638797-united-b777-engine-failure-15.html',
+              ]),
             (EXAMPLE_PPRUNE_PAGE_THREE_POSTS_URL,
              ['https://www.pprune.org/rumours-news/639101-a320-nose-gear-incident.html']),
     )

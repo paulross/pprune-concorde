@@ -6,7 +6,7 @@ import typing
 
 import spacy
 
-from PPRUNE.common import read_html
+from src.PPRUNE import read_html
 
 logger = logging.getLogger(__file__)
 

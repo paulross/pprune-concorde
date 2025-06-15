@@ -26,6 +26,7 @@ __date__ = '2017-01-01'
 __version__ = '0.0.1'
 __rights__ = 'Copyright (c) 2017 Paul Ross'
 
+import argparse
 import collections
 import datetime
 import logging
@@ -33,7 +34,10 @@ import os
 import re
 import pprint
 import string
+import sys
+import time
 import typing
+from urllib.parse import urlparse, ParseResult
 
 import bs4
 import dateparser
@@ -44,9 +48,10 @@ logger = logging.getLogger(__file__)
 
 
 HTML_PAGE_PATH = '/Users/paulross/Documents/pprune/concorde/original'
-HTML_PAGE_PATH = '/Users/paulross/Documents/pprune/concorde/2021-03-12'
-# Matches '423988-concorde-question-1.html' with two groups: ('423988', '1')
-RE_FILENAME = re.compile(r'(\d+)\D+(\d+)\.html')
+HTML_PAGE_PATH = '/Users/paulross/Documents/pprune/concorde/current'
+# Matches '423988-concorde-question-2.html' with groups: ('423988', '-concorde-question-', '2')
+# Special case '423988-concorde-question.html' corresponds to page 1.
+RE_FILENAME = re.compile(r'(\d+)(\D+)(\d+)?\.html')
 # Matches 'http://www.pprune.org/tech-log/423988-concorde-question.html#post5866333'
 # Gives one group: ('5866333',)
 RE_PERMALINK_TO_POST_NUMBER = re.compile(r'\S+post(\d+)')
@@ -79,15 +84,18 @@ class User(typing.NamedTuple):
 
 
 class Post:
+    """Represents a single post in a thread."""
     def __init__(self, timestamp: datetime.datetime, permalink: str, user: User, node: bs4.element.Tag, sequence_num: int):
         self.timestamp = timestamp
         self.permalink = permalink
         self.user = user
+        assert node is not None
         self.node = node
         self.sequence_num = sequence_num
 
     @property
     def post_message_attribute_id(self) -> str:
+        """The id attribute of the post message node."""
         return f'post_message_{self.sequence_num}'
 
     @property
@@ -134,6 +142,7 @@ class Post:
 
 
 class Thread:
+    """Represents a thread of ordered posts with some internal indexing."""
     def __init__(self):
         # Ordered list of posts
         self.posts: typing.List[Post] = []
@@ -149,6 +158,7 @@ class Thread:
         return self.posts[item]
 
     def add_post(self, post: Post):
+        """Add a post."""
         if post.permalink in self.post_map:
             raise ValueError('permalink already in post_map. Trying to add: {:s}'.format(post.permalink))
         self.post_map[post.permalink] = len(self.posts)
@@ -170,8 +180,8 @@ class Thread:
         return self.user_post_indexes[user]
 
 
-def parse_url_to_beautiful_soup(url: str) -> bs4.BeautifulSoup:
-    """Parses a URL."""
+def get_url_text(url: str) -> str:
+    """Gets a URL as text."""
     logger.info('Parsing URL %s', url)
     try:
         response = requests.get(url)
@@ -180,13 +190,19 @@ def parse_url_to_beautiful_soup(url: str) -> bs4.BeautifulSoup:
     if response.status_code != 200:  # pragma: no cover
         raise ValueError(f'URP request {url} failed: {response.status_code}')
     logger.info('Parsed %d bytes from URL %s ', len(response.text), url)
-    return parse_str_to_beautiful_soup(response.text)
+    return response.text
+
+
+def parse_url_to_beautiful_soup(url: str) -> bs4.BeautifulSoup:
+    """Parses a URL."""
+    response_text = get_url_text(url)
+    return parse_str_to_beautiful_soup(response_text)
 
 
 def parse_str_to_beautiful_soup(content: str) -> bs4.BeautifulSoup:
     """Parses a string as HTML."""
-    # parse_tree = bs4.BeautifulSoup(content, features='lxml')
-    parse_tree = bs4.BeautifulSoup(content, 'html.parser')
+    parse_tree = bs4.BeautifulSoup(content, features='lxml')
+    # parse_tree = bs4.BeautifulSoup(content, 'html.parser')
     return parse_tree
 
 
@@ -254,20 +270,22 @@ def html_node_date(node: bs4.element.Tag) -> datetime.datetime:
     return ret
 
 
-def html_node_permalink(node: bs4.element.Tag) -> str:
+def html_node_permalink(node: bs4.element.Tag) -> typing.Optional[str]:
     """Returns the permalink from the node."""
     # Looking for:
     # <a href="https://www.pprune.org/rumours-news/638797-united-b777-engine-failure.html#post10994345" title="Link to this Post">permalink</a>
     ret = node.find('a', title="Link to this Post")
-    return ret.attrs['href']
+    if ret is not None:
+        return ret.attrs['href']
 
 
-def html_node_user(node: bs4.element.Tag) -> User:
+def html_node_user(node: bs4.element.Tag) -> typing.Optional[User]:
     """Returns the user from the node."""
     # Looking for:
     # <a rel="nofollow" class="bigusername" href="https://www.pprune.org/members/219249-nicolai">nicolai</a>
     user_node = node.find('a', **{"class" : "bigusername"})
-    return User(user_node.attrs['href'], user_node.text.strip())
+    if user_node:
+        return User(user_node.attrs['href'], user_node.text.strip())
 
 
 def html_node_post_node(node: bs4.element.Tag) -> bs4.element.Tag:
@@ -279,15 +297,20 @@ def html_node_post_node(node: bs4.element.Tag) -> bs4.element.Tag:
     return user_node
 
 
-def post_from_html_node(node: bs4.element.Tag) -> Post:
+def post_from_html_node(node: bs4.element.Tag) -> typing.Optional[Post]:
     """Returns a Post object from an HTML node."""
     timestamp = html_node_date(node)
     permalink = html_node_permalink(node)
+    if permalink is None:
+        logger.warning(f'No permalink extracted from node <{node.name} {node.attrs}>')
     user = html_node_user(node)
+    if user is None:
+        logger.warning(f'No user extracted from node <{node.name} {node.attrs}>')
     post_node = html_node_post_node(node)
     sequence_number = html_node_post_number(node)
-    post = Post(timestamp, permalink, user, post_node, sequence_number)
-    return post
+    if sequence_number is not None:
+        post = Post(timestamp, permalink, user, post_node, sequence_number)
+        return post
 
 
 # def read_common_words(filename, n):
@@ -306,28 +329,39 @@ def post_from_html_node(node: bs4.element.Tag) -> Post:
 def read_files(directory_name: str) -> typing.Dict[int, str]:
     """Returns a dict of {ordinal : file_abspath, ...} of the files in a directory that match RE_FILENAME."""
     files = {}
-    for aname in os.listdir(directory_name):
-        m = RE_FILENAME.match(aname)
+    for name in os.listdir(directory_name):
+        m = RE_FILENAME.match(name)
         if m is not None:
-            key = int(m.group(2))
+            if m.group(3) is not None:
+                key = int(m.group(3))
+            else:
+                key = 1
             assert key not in files, 'Key %d already in %s' % (key, str(files.keys()))
-            files[key] = os.path.abspath(os.path.join(directory_name, aname))
-            # else:
-            #     print('Ignoring %s' % aname)
+            files[key] = os.path.abspath(os.path.join(directory_name, name))
+        else:
+            logger.error('Can not regex "%s"', name)
     return files
 
 
-def read_whole_thread(directory_name: str) -> Thread:
+def read_whole_thread(directory_name: str, count: int = -1) -> Thread:
     thread = Thread()
     files = read_files(directory_name)
+    file_count = 0
     for file_number in sorted(files.keys()):
+        if 0 <= count <= file_count:
+            break
         post_count = 0
-        for post in get_post_nodes_from_file_path(files[file_number]):
+        for post_node in get_post_nodes_from_file_path(files[file_number]):
             # print('Post: %d' % i)
-            thread.add_post(post_from_html_node(post))
-            post_count += 1
+            post = post_from_html_node(post_node)
+            if post is not None:
+                thread.add_post(post)
+                post_count += 1
+            else:
+                logger.warning('Can not read post from node <%s %s>', post_node.name, post_node.attrs)
         logger.info('Read: {:s} posts: {:d}'.format(files[file_number], post_count))
-    logger.info('Read %d posts' % len(thread.posts))
+        file_count += 1
+    logger.info('read_whole_thread(): Read %d posts' % len(thread.posts))
     return thread
 
 
@@ -381,6 +415,7 @@ def get_first_page_and_subsequent_urls_from_url(url: str) -> typing.Tuple[bs4.Be
 
 
 def read_whole_thread_from_url(url_first: str) -> Thread:
+    """Take the first page URL and read all of the pages into a Thread object."""
     thread = Thread()
     html_doc, urls = get_first_page_and_subsequent_urls_from_url(url_first)
     for post in get_post_objects_from_parsed_doc(html_doc):
@@ -392,4 +427,43 @@ def read_whole_thread_from_url(url_first: str) -> Thread:
     return thread
 
 
+def archive_thread_offline(url_first: str, offline_directory: str, page_count: int = -1) -> typing.Tuple[int, int]:
+    """Given a URL of the first page of the thread archive all the pages limited by page_count.
+    This returns the number of pages archived offline."""
+    logger.info('Archiving thread from URL %s ', url_first)
+    url_count = byte_count = 0
+    os.makedirs(offline_directory, exist_ok=True)
+    # NOTE: We read the first page twice, simplified code and all that.
+    for url in all_page_urls_from_url(url_first):
+        if page_count != -1 and url_count >= page_count:
+            break
+        text = get_url_text(url)
+        parsed_url: ParseResult = urlparse(url)
+        with open(os.path.join(offline_directory, os.path.basename(parsed_url.path)), 'w') as file:
+            file.write(text)
+        url_count += 1
+        byte_count += len(text)
+    logger.info('Read a total of %d bytes from URL %s ', byte_count, url_first)
+    return url_count, byte_count
 
+
+
+def main() -> int:  # pragma: no cover
+    DEFAULT_OPT_LOG_FORMAT_VERBOSE = (
+        '%(asctime)s - %(filename)24s#%(lineno)-4d - %(process)5d - (%(threadName)-10s) - %(levelname)-8s - %(message)s'
+    )
+    logging.basicConfig(level=logging.INFO, format=DEFAULT_OPT_LOG_FORMAT_VERBOSE, stream=sys.stdout)
+
+    parser = argparse.ArgumentParser(description='Archive a thread to offline.')
+    parser.add_argument('url', type=str, help='URL of the first page of the thread.')
+    parser.add_argument('archive', type=str, help='Output path to save the thread pages to.')
+    args = parser.parse_args()
+    t_start = time.perf_counter()
+    url_count, byte_count = archive_thread_offline(args.url, args.archive)
+    t_elapsed = time.perf_counter() - t_start
+    logger.info('Read %d URLs and %d bytes in %.3f (s) at %.3f (kb/s)', url_count, byte_count, t_elapsed, byte_count / t_elapsed / 1024)
+    return 0
+
+
+if __name__ == '__main__':  # pragma: no cover
+    sys.exit(main())

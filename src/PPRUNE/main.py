@@ -29,7 +29,7 @@ __rights__  = 'Copyright (c) 2017 Paul Ross'
 import os
 import sys
 
-from src.PPRUNE import read_html
+from PPRUNE.common import read_html
 import write_html
 
 

@@ -117,28 +117,28 @@ class Post:
                 ret.append(line)
         return '\n'.join(ret)
 
-    # @property
-    # def words(self):
-    #     txt = self.text.translate(PUNCTUATION_TABLE)
-    #     # txt = txt.translate(DIGITS_TABLE)
-    #     return [w for w in txt.strip().split() if not w.startswith('googletag')]
-    #     # return [w for w in txt.lower().strip().split() if not w.startswith('googletag')]
+    @property
+    def words(self):
+        txt = self.text.translate(PUNCTUATION_TABLE)
+        # txt = txt.translate(DIGITS_TABLE)
+        return [w for w in txt.strip().split() if not w.startswith('googletag')]
+        # return [w for w in txt.lower().strip().split() if not w.startswith('googletag')]
 
-    # @property
-    # def post_number(self):
-    #     m = RE_PERMALINK_TO_POST_NUMBER.match(self.permalink)
-    #     if m is not None:
-    #         return int(m.group(1))
-    #
-    # def words_removed(self, remove_these, lower_case):
-    #     result = []
-    #     for w in self.words:
-    #         if lower_case and w.upper() != w:
-    #             w = w.lower()
-    #         if w not in remove_these:
-    #             result.append(w)
-    #     return result
-    #     # return [w for w in self.words if w not in remove_these]
+    @property
+    def post_number(self):
+        m = RE_PERMALINK_TO_POST_NUMBER.match(self.permalink)
+        if m is not None:
+            return int(m.group(1))
+
+    def words_removed(self, remove_these, lower_case):
+        result = []
+        for w in self.words:
+            if lower_case and w.upper() != w:
+                w = w.lower()
+            if w not in remove_these:
+                result.append(w)
+        return result
+        # return [w for w in self.words if w not in remove_these]
 
 
 class Thread:
@@ -313,17 +313,17 @@ def post_from_html_node(node: bs4.element.Tag) -> typing.Optional[Post]:
         return post
 
 
-# def read_common_words(filename, n):
-#     """Reads file_path and returns the set of n words."""
-#     print('Reading words file: {}'.format(filename))
-#     l = []
-#     with open(filename) as f:
-#         for aline in f.readlines():
-#             if n <= 0:
-#                 break
-#             l.append(aline.split()[0].lower())
-#             n -= 1
-#     return set(l)
+def read_common_words(filename, n):
+    """Reads file_path and returns the set of n words."""
+    print('Reading words file: {}'.format(filename))
+    l = []
+    with open(filename) as f:
+        for aline in f.readlines():
+            if n <= 0:
+                break
+            l.append(aline.split()[0].lower())
+            n -= 1
+    return set(l)
 
 
 def read_files(directory_name: str) -> typing.Dict[int, str]:

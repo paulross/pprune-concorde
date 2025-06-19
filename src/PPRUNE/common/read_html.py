@@ -201,8 +201,8 @@ def parse_url_to_beautiful_soup(url: str) -> bs4.BeautifulSoup:
 
 def parse_str_to_beautiful_soup(content: str) -> bs4.BeautifulSoup:
     """Parses a string as HTML."""
-    parse_tree = bs4.BeautifulSoup(content, features='lxml')
-    # parse_tree = bs4.BeautifulSoup(content, 'html.parser')
+    # parse_tree = bs4.BeautifulSoup(content, features='lxml')
+    parse_tree = bs4.BeautifulSoup(content, 'html.parser')
     return parse_tree
 
 
@@ -222,7 +222,15 @@ def get_post_nodes_from_file(file: typing.TextIO) -> typing.List[bs4.element.Tag
 def get_post_nodes_from_parsed_doc(doc: bs4.BeautifulSoup) -> typing.List[bs4.element.Tag]:
     posts = doc.find('div', id='posts')
     # Miss out the last one: <div id="lastpost"></div>
-    ret = [c for c in posts.children if c.name == 'div' and c.attrs['id'] != 'lastpost']
+    # ret = [c for c in posts.children if c.name == 'div' and c.attrs['id'] != 'lastpost']
+    children = [c for c in posts.children if hasattr(c, 'attrs') and c.attrs is not None]
+    # ret = [c for c in children if c.name == 'div' and c.attrs['id'] != 'lastpost']
+    ret = []
+    for c in children:
+        if c.name == 'div':
+            if 'id' in c.attrs and c.attrs['id'] == 'lastpost':
+                continue
+            ret.append(c)
     return ret
 
 

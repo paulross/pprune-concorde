@@ -61,78 +61,28 @@ font-family:       sans-serif;
 color:             black;
 }
 th.post, td.post, td.alt1 {
-border:            1px solid black;
-vertical-align:    top;
-padding:           2px 6px 2px 6px;
-}
+    border:            1px solid black;
+    vertical-align:    top;
+    padding:           2px 6px 2px 6px;
+    }
 p.page_links {
-    horizontal-align:          center;
-    font-family:      sans-serif;
-    font-size:        10pt;
-    font-style:     italic;
-}span.macro_s_f_r_f_name{
-    color:          DarkSlateGray;
-    font-family:    monospace;
-    font-weight:    normal;
-    font-style:     italic;
+        horizontal-align:          center;
+        font-family:      sans-serif;
+        font-size:        10pt;
+        font-style:     italic;
+    }
+
+a.headerlink {
+    visibility: hidden;
 }
-span.macro_s_t_r_f_name {
-    color:          DarkSlateGray;
-    font-family:    monospace;
-    font-weight:    normal;
-    font-style:     normal;
+a:visited {
+    color: #551A8B;
 }
-span.macro_s_f_r_t_name {
-    color:          Red; /* OrangeRed; */
-    font-family:    monospace;
-    font-weight:    bold;
-    font-style:     italic;
-}
-span.macro_s_t_r_t_name{
-    color:          Red; /* OrangeRed; */
-    font-family:    monospace;
-    font-weight:    bold;
-    font-style:     normal;
-}
-span.macro_s_f_r_f_repl{
-    color:          SlateGray;
-    font-family:    monospace;
-    font-weight:    normal;
-    font-style:     italic;
-}
-span.macro_s_t_r_f_repl {
-    color:          SlateGray;
-    font-family:    monospace;
-    font-weight:    normal;
-    font-style:     normal;
-}
-span.macro_s_f_r_t_repl {
-    color:          RosyBrown; /* Orange; */
-    font-family:    monospace;
-    font-weight:    bold;
-    font-style:     italic;
-}
-span.macro_s_t_r_t_repl{
-    color:          RosyBrown; /* Orange; */
-    font-family:    monospace;
-    font-weight:    bold;
-    font-style:     normal;
-}
-span.file_decl {
-    color:          black;
-    font-family:    monospace;
-    /* font-weight:    bold;
-    font-style:     italic; */
-}
-span.CcgNodeTrue {
-    color:          LimeGreen;
-    font-family:    monospace;
-    /* font-weight:    bold; */
-    /* font-style:     italic; */
-}
-span.CcgNodeFalse {
-    color:          red;
-    font-family:    monospace;
-    /* font-weight:    bold; */
-    /* font-style:     italic; */
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink {
+    visibility: visible;
 }
